@@ -1,0 +1,97 @@
+_info : 'https://docs.cloudscripting.com/1.6.2/'
+version: 1.6.2
+build: 20200401
+type: update
+name: 'SSHtun'
+id: 'sshtun'
+homepage: https://github.com/layershift/jps-sshtun
+baseUrl: https://raw.githubusercontent.com/layershift/jps-sshtun/master
+logo: /images/sshtun.png?_r=${fn.random}
+
+categories:
+ - apps/others
+
+description:
+  text: /texts/description.md
+  short: SSH tunneling for database node
+
+targetNodes:
+  nodeGroup:
+  - db
+
+menu:
+  - caption: Enable SSH tunneling
+    loadingText: Enabling SSH tunneling..
+    action: enableTun
+  - caption: Disable SSH tunneling
+    loadingText: Disabling SSH tunneling..
+    confirmText: Are you sure you wish to disable SSH tunneling?
+    action: disableTun
+
+buttons:
+  - caption: Status
+    loadingText: Checking..
+    action: checkTun
+
+globals:
+  targetNodeId:  ${nodes.db.first.id}
+  targetNodeType: ${nodes.db.first.nodeType}
+
+onAfterRedeployContainer:
+  install:
+    name: Install Action
+
+onInstall:
+  install:
+    name: Install Action
+
+onUninstall:
+  cmd [${globals.targetNodeId}]:
+    - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding no/" /etc/ssh/sshd_config
+    - service sshd restart
+  sayYes: true
+  user: root
+
+actions:
+  enableTun:
+    - cmd [${globals.targetNodeId}]:
+        - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding yes/" /etc/ssh/sshd_config
+          - service sshd restart
+      sayYes: true
+      user: root
+    - if (response.out.indexOf("Issue") !== -1):
+        message:  ${response.out}
+        script: |
+          return {'result': 2309, 'message': message.replace(/\n/g, '  \n')}
+
+  disableTun:
+    - cmd [${globals.targetNodeId}]:
+        - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding no/" /etc/ssh/sshd_config
+          - service sshd restart
+      user: root
+    - message: ${response.out}
+      script: |
+        return {'result': 2307, 'message': message.replace(/\n/g, '  \n')}
+
+  checkTun:
+    - cmd [${globals.targetNodeId}]:
+        - cat /etc/ssh/sshd_config | grep  ^AllowTcpForwarding | grep -q yes && echo "SSH tunneling enabled" || echo "SSH tunneling disabled"
+      user: root
+    - message: ${response.out}
+      script: |
+        return {'result': 2307, 'message': message.replace(/\n/g, '  \n')}
+
+responses:
+  2307:
+    type: info
+    message: Custom Success message!
+
+  2308:
+    type: success
+    message: Custom Success message!
+
+  2309:
+    type: error
+    message: Custom Success message!
+
+success: /texts/success.md
