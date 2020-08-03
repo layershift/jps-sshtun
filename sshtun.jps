@@ -1,5 +1,6 @@
 type: update
 name: 'SSHtun'
+id: 'sshtun'
 homepage: https://github.com/layershift/jps-sshtun
 baseUrl: https://raw.githubusercontent.com/layershift/jps-sshtun/master
 logo: /images/sshtun.png?_r=${fn.random}
