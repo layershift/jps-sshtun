@@ -21,10 +21,10 @@ targetNodes:
 
 menu:
   - caption: Enable SSH tunneling
-    loadingText: Enabling SSH tunneling..
+    loadingText: Enabling SSH tunneling...
     action: enableTun
   - caption: Disable SSH tunneling
-    loadingText: Disabling SSH tunneling..
+    loadingText: Disabling SSH tunneling...
     confirmText: Are you sure you wish to disable SSH tunneling?
     action: disableTun
 
