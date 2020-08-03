@@ -35,7 +35,7 @@ globals:
 
 onAfterRedeployContainer:
   install:
-    name: Install Action
+    name: Install Redeploy Action
     type: update
 
 onInstall:
