@@ -54,7 +54,7 @@ actions:
   enableTun:
     - cmd [${globals.targetNodeId}]:
         - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding yes/" /etc/ssh/sshd_config
-          - service sshd restart
+        - service sshd restart
       sayYes: true
       user: root
     - if (response.out.indexOf("Issue") !== -1):
@@ -65,7 +65,7 @@ actions:
   disableTun:
     - cmd [${globals.targetNodeId}]:
         - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding no/" /etc/ssh/sshd_config
-          - service sshd restart
+        - service sshd restart
       user: root
     - message: ${response.out}
       script: |
