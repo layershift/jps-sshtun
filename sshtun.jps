@@ -30,8 +30,8 @@ buttons:
     action: checkTun
 
 globals:
-  targetNodeId:  ${nodes.db.first.id}
-  targetNodeType: ${nodes.db.first.nodeType}
+  targetNodeId:  ${nodes.sqldb.first.id}
+  targetNodeType: ${nodes.sqldb.first.nodeType}
 
 onAfterRedeployContainer:
   install:
