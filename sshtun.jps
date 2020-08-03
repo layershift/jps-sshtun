@@ -36,10 +36,12 @@ globals:
 onAfterRedeployContainer:
   install:
     name: Install Action
+    type: update
 
 onInstall:
   install:
-    jps: https://raw.githubusercontent.com/layershift/jps-sshtun/master/sshtun.jps
+    name: Install Action
+    type: update
 
 onUninstall:
   cmd [${globals.targetNodeId}]:
