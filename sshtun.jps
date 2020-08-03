@@ -60,7 +60,7 @@ actions:
     - if (response.out.indexOf("Issue") !== -1):
         message:  ${response.out}
         script: |
-          return {'result': 2309, 'message': message.replace(/\n/g, '  \n')}
+          return {'result': 2308, 'message': message.replace(/\n/g, '  \n')}
 
   disableTun:
     - cmd [${globals.targetNodeId}]:
@@ -69,7 +69,7 @@ actions:
       user: root
     - message: ${response.out}
       script: |
-        return {'result': 2307, 'message': message.replace(/\n/g, '  \n')}
+        return {'result': 2308, 'message': message.replace(/\n/g, '  \n')}
 
   checkTun:
     - cmd [${globals.targetNodeId}]:
