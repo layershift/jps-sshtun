@@ -40,7 +40,7 @@ onAfterRedeployContainer:
 
 onInstall:
   install:
-    name: Install Action
+    name: SSH Tunneling for database node
     type: update
 
 onUninstall:
