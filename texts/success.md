@@ -1,2 +1,1 @@
-Success!
-SSH tunneling is now enabled
+SSH tunneling state changed
