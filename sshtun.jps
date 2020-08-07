@@ -10,7 +10,7 @@ categories:
 
 description:
   text: /texts/description.md
-  short: SSH tunneling for database node
+  short: Enable SSH tunneling for database node
 
 targetNodes:
   nodeGroup:
