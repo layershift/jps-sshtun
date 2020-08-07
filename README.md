@@ -12,7 +12,7 @@ ssh <node id>-<user id>@gate.j.layershift.co.uk -p 3022 -N -L 3306:127.0.0.1:330
 Configure your database connection details in a database client application like HeidiSQL
 ![HeidiSQL Session](../../raw/master/images/HeidiSQL_Session.png)
 
-# Without add-on installed and SSH tunnelling:
+# Without add-on installed and SSH tunnelling disabled:
 
 Connection from computer database client application will fail with something like this shown in the ssh connection window
 
