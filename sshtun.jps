@@ -37,7 +37,7 @@ onInstall:
   enableTun
 
 onUninstall:
-  cmd [${targetNodes.join(id,)}]:
+  cmd [${targetNodes.nodeGroup}]:
     - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding no/" /etc/ssh/sshd_config
     - service sshd restart
   sayYes: true
@@ -45,7 +45,7 @@ onUninstall:
 
 actions:
   enableTun:
-    - cmd [${targetNodes.join(id,)}]:
+    - cmd [${targetNodes.nodeGroup}]:
         - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding yes/" /etc/ssh/sshd_config
         - service sshd restart
       sayYes: true
@@ -56,7 +56,7 @@ actions:
           return {'result': 2308, 'message': message.replace(/\n/g, '  \n')}
 
   disableTun:
-    - cmd [${targetNodes.join(id,)}]:
+    - cmd [${targetNodes.nodeGroup}]:
         - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding no/" /etc/ssh/sshd_config
         - service sshd restart
       user: root
@@ -65,7 +65,7 @@ actions:
         return {'result': 2308, 'message': message.replace(/\n/g, '  \n')}
 
   checkTun:
-    - cmd [${targetNodes.join(id,)}]:
+    - cmd [${targetNodes.nodeGroup}]:
         - cat /etc/ssh/sshd_config | grep  ^AllowTcpForwarding | grep -q yes && echo "SSH tunneling enabled" || echo "SSH tunneling disabled"
       user: root
     - message: ${response.out}
