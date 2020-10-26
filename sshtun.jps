@@ -37,7 +37,7 @@ onInstall:
   enableTun
 
 onUninstall:
-  cmd [${targetNodes.join(id,)}]:
+  cmd [${targetNodes.nodeGroup}]:
     - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding no/" /etc/ssh/sshd_config
     - service sshd restart
   sayYes: true
@@ -45,7 +45,7 @@ onUninstall:
 
 actions:
   enableTun:
-    - cmd [${targetNodes.join(id,)}]:
+    - cmd [${targetNodes.nodeGroup}]:
         - sed -i -e "s/^AllowTcpForwarding.*/AllowTcpForwarding yes/" /etc/ssh/sshd_config
         - service sshd restart
       sayYes: true
