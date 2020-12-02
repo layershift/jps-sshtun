@@ -15,6 +15,7 @@ description:
 targetNodes:
   nodeGroup:
   - sqldb
+  - nosqldb
 
 menu:
   - caption: Enable SSH tunneling
