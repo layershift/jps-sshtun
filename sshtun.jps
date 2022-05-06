@@ -16,6 +16,7 @@ targetNodes:
   nodeGroup:
   - sqldb
   - nosqldb
+  - proxy
 
 menu:
   - caption: Enable SSH tunneling
